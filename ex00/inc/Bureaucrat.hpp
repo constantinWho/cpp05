@@ -16,6 +16,16 @@ class Bureaucrat {
 		Bureaucrat( const Bureaucrat& other );
 		Bureaucrat& operator=( const Bureaucrat& other);
 		~Bureaucrat();
+
+		// Setters and Getters
+		void		setName(std::string const newName);
+		void		setGrade(int newGrade);
+		std::string	getName() const;
+		int			getGrade() const;
+
+		// Increment and Decrement
+		void		incGrade();
+		void		dicGrade();
 };
 
 #endif
