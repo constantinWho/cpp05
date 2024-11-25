@@ -1,20 +1,44 @@
 #include "../inc/Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() {
-	std::cout << "Constructor was called." << std::endl;
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade) {
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
 }
 
-Bureaucrat::~Bureaucrat() {
-	std::cout << "Destructor was called." << std::endl;
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade) {}
 
-Bureaucrat::Bureaucrat( const Bureaucrat& other) {
-	type = other.type;
-	std::cout << "Copy constructor was called." << std::endl;
-}
-
-Bureaucrat& Bureaucrat::operator=( const Bureaucrat& other) {
+Bureaucrat& Bureaucrat::operator=( const Bureaucrat& other ) {
 	if (this != &other)
-		std::cout << "Copy assigment operator was called." << std::endl;
+		_grade = other._grade;
 	return *this;
 }
+
+Bureaucrat::~Bureaucrat() {}
+
+const std::string& Bureaucrat::getName() const {
+	return _name;
+}
+
+int Bureaucrat::getGrade() const {
+	return _grade;
+}
+
+void Bureaucrat::incrementGrade() {
+	_grade--;
+	if (_grade < 1)
+		throw GradeTooHighException();
+}
+
+void Bureaucrat::decrementGrade() {
+	_grade++;
+	if (_grade > 150)
+		throw GradeTooLowException();
+}
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& auslanderBehorde) {
+    out << auslanderBehorde.getName() << ", bureaucrat grade " << auslanderBehorde.getGrade();
+    return out;
+}
+
