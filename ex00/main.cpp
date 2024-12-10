@@ -26,7 +26,7 @@ void testCopyAssignment() {
 	std::cout << "\n--- Testing Copy Assignment Operator ---" << std::endl;
 
 	try {
-	Bureaucrat original("Bob", 20);
+	Bureaucrat original("Bob", 14);
 	Bureaucrat assigned("Placeholder", 150); // Placeholder object
 	std::cout << "Original: " << original << std::endl;
 	std::cout << "Assigned (before assignment): " << assigned << std::endl;

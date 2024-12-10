@@ -3,7 +3,7 @@
 
 int main() {
 	try {
-		Bureaucrat alice("Alice", 70);
+		Bureaucrat alice("Alice", -3);
 		Bureaucrat lice("Robert", 14);
 		Form taxForm("Tax Form", 50, 25);
 

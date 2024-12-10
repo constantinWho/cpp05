@@ -1,8 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+# include "AForm.hpp"
 # include <iostream>
 # include <stdexcept>
+# include <stdbool.h>
 
 class Bureaucrat {
 
@@ -34,6 +36,15 @@ class Bureaucrat {
 					return "Grade is too low!";
 				}
 		};
+
+		void executeForm(const AForm& form) const {
+    try {
+        form.execute(*this);
+        std::cout << _name << " executed " << form.getName() << std::endl;
+    } catch (std::exception& e) {
+        std::cerr << _name << " couldn’t execute " << form.getName() << ": " << e.what() << std::endl;
+    }
+}
 
 		friend std::ostream&	operator<<(std::ostream& out, const Bureaucrat& auslanderBehorde);
 };
