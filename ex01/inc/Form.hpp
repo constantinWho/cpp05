@@ -24,7 +24,7 @@ class Form {
 		int					getRequiredGrade() const;
 		int					getExeGrade() const;
 
-		void				signForm(const Bureaucrat& bureaucrat);
+		void				getSigned(const Bureaucrat& bureaucrat);
 
 		class GradeTooHighException : public std::exception {
 			public:
