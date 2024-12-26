@@ -5,14 +5,14 @@
 #include <cstdlib>
 
 class RobotomyRequestForm : public AForm {
+private:
+	const std::string _target;
+
 public:
 	RobotomyRequestForm(const std::string& target);
 	~RobotomyRequestForm();
 
-	void execute(const Bureaucrat& executor) const override;
-
-private:
-	std::string _target;
+	void execute(const Bureaucrat& executor) const;
 };
 
-#endif // ROBOTOMYREQUESTFORM_HPP
+#endif

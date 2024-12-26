@@ -1,21 +1,37 @@
 #include "./inc/ShrubberyCreationForm.hpp"
 #include "./inc/RobotomyRequestForm.hpp"
 #include "./inc/PresidentialPardonForm.hpp"
+#include "./inc/Bureaucrat.hpp"
+#include "./inc/AForm.hpp"
 
 int main() {
-    Bureaucrat alice("Alice", 1);
-    ShrubberyCreationForm shrubbery("garden");
-    RobotomyRequestForm robotomy("Bender");
-    PresidentialPardonForm pardon("Ford Prefect");
+	try {
+		Bureaucrat alice("Alice", 1);
+		Bureaucrat bob("Bob", 150);
 
-    alice.signForm(shrubbery);
-    alice.executeForm(shrubbery);
+		ShrubberyCreationForm shrubbery("Garden");
+		RobotomyRequestForm robotomy("Bender");
+		PresidentialPardonForm pardon("Ford Prefect");
 
-    alice.signForm(robotomy);
-    alice.executeForm(robotomy);
+		std::cout << shrubbery << std::endl;
+		std::cout << robotomy << std::endl;
+		std::cout << pardon << std::endl;
 
-    alice.signForm(pardon);
-    alice.executeForm(pardon);
+		// Signing and executing forms
+		alice.signForm(shrubbery);
+		alice.executeForm(shrubbery);
 
-    return 0;
+		alice.signForm(robotomy);
+		alice.executeForm(robotomy);
+
+		alice.signForm(pardon);
+		alice.executeForm(pardon);
+
+		// Attempt to execute a form without signing
+		bob.executeForm(shrubbery); // Should throw an exception
+	} catch (const std::exception& e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	return 0;
 }

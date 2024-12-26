@@ -6,18 +6,22 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-	checkExecution(executor);
+	if (!isSigned())
+		throw FormNotSignedException();
+	if (executor.getGrade() > getExeGrade())
+		throw GradeTooLowException();
 
 	std::ofstream ofs(_target + "_shrubbery");
 	if (!ofs.is_open())
-		throw std::ios_base::failure("Failed to open file");
+		throw std::ios_base::failure("Failed to create file");
 
-	ofs << "	###\n"
-		<< "   #o###\n"
-		<< " #####o###\n"
-		<< "#o#\\#|#/###\n"
-		<< " ###\\|/#o#\n"
-		<< "  # }|{  #\n"
-		<< "	}|{\n";
+	ofs << "	   ###\n"
+		<< "	  #o###\n"
+		<< "	#####o###\n"
+		<< "   #o#\\#|#/###\n"
+		<< "	###\\|/#o#\n"
+		<< "	 # }|{  #\n"
+		<< "	   }|{\n";
+
 	ofs.close();
 }

@@ -6,7 +6,10 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
-	checkExecution(executor);
+	if (!isSigned())
+		throw FormNotSignedException();
+	if (executor.getGrade() > getExeGrade())
+		throw GradeTooLowException();
 
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

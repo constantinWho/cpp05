@@ -4,14 +4,14 @@
 #include "AForm.hpp"
 
 class PresidentialPardonForm : public AForm {
+private:
+	const std::string _target;
+
 public:
 	PresidentialPardonForm(const std::string& target);
 	~PresidentialPardonForm();
 
 	void execute(const Bureaucrat& executor) const;
-
-private:
-	std::string _target;
 };
 
-#endif // PRESIDENTIALPARDONFORM_HPP
+#endif
